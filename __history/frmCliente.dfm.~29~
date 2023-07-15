@@ -1,0 +1,297 @@
+object F_Cliente: TF_Cliente
+  Left = 0
+  Top = 0
+  Caption = 'Cliente'
+  ClientHeight = 373
+  ClientWidth = 595
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 595
+    Height = 373
+    ActivePage = TabSheet1
+    Align = alClient
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Consulta'
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Dados'
+      ImageIndex = 1
+      object PnlBottom: TPanel
+        Left = 0
+        Top = 285
+        Width = 587
+        Height = 60
+        Align = alBottom
+        BevelOuter = bvNone
+        TabOrder = 0
+        ExplicitTop = 273
+        ExplicitWidth = 584
+        object BtnSalvar: TBitBtn
+          Left = 10
+          Top = 6
+          Width = 75
+          Height = 25
+          Caption = 'Salvar'
+          TabOrder = 0
+          OnClick = BtnSalvarClick
+        end
+      end
+      object PnlCenter: TPanel
+        Left = 0
+        Top = 80
+        Width = 587
+        Height = 205
+        Align = alClient
+        BevelOuter = bvNone
+        Padding.Left = 10
+        Padding.Top = 10
+        Padding.Right = 10
+        Padding.Bottom = 10
+        TabOrder = 1
+        ExplicitTop = 8
+        ExplicitWidth = 576
+        ExplicitHeight = 239
+        object EditID: TLabeledEdit
+          Left = 10
+          Top = 32
+          Width = 60
+          Height = 21
+          EditLabel.Width = 11
+          EditLabel.Height = 13
+          EditLabel.Caption = 'ID'
+          TabOrder = 0
+        end
+        object EditNome: TLabeledEdit
+          Left = 76
+          Top = 32
+          Width = 498
+          Height = 21
+          EditLabel.Width = 27
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Nome'
+          TabOrder = 1
+        end
+        object EditEndereco: TLabeledEdit
+          Left = 10
+          Top = 72
+          Width = 215
+          Height = 21
+          EditLabel.Width = 45
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Endere'#231'o'
+          TabOrder = 2
+        end
+        object EditBairro: TLabeledEdit
+          Left = 231
+          Top = 72
+          Width = 250
+          Height = 21
+          EditLabel.Width = 28
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Bairro'
+          TabOrder = 3
+        end
+        object EditNumero: TLabeledEdit
+          Left = 487
+          Top = 72
+          Width = 87
+          Height = 21
+          EditLabel.Width = 37
+          EditLabel.Height = 13
+          EditLabel.Caption = 'N'#250'mero'
+          TabOrder = 4
+        end
+        object EditMunicipio: TLabeledEdit
+          Left = 103
+          Top = 112
+          Width = 378
+          Height = 21
+          EditLabel.Width = 43
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Munic'#237'pio'
+          TabOrder = 5
+        end
+        object EditEstado: TLabeledEdit
+          Left = 487
+          Top = 112
+          Width = 87
+          Height = 21
+          EditLabel.Width = 33
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Estado'
+          TabOrder = 6
+        end
+        object EditCEP: TLabeledEdit
+          Left = 10
+          Top = 112
+          Width = 87
+          Height = 21
+          EditLabel.Width = 19
+          EditLabel.Height = 13
+          EditLabel.Caption = 'CEP'
+          TabOrder = 7
+          OnExit = EditCEPExit
+        end
+        object EditCPFCNPJ: TLabeledEdit
+          Left = 10
+          Top = 153
+          Width = 215
+          Height = 21
+          EditLabel.Width = 54
+          EditLabel.Height = 13
+          EditLabel.Caption = 'CPF / CNPJ'
+          TabOrder = 8
+          OnExit = EditCPFCNPJExit
+        end
+        object EditTelefone: TLabeledEdit
+          Left = 231
+          Top = 153
+          Width = 215
+          Height = 21
+          EditLabel.Width = 42
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Telefone'
+          TabOrder = 9
+        end
+        object EditDataNasc: TMaskEdit
+          Left = 452
+          Top = 153
+          Width = 120
+          Height = 21
+          EditMask = '!99/99/00;1;_'
+          MaxLength = 8
+          TabOrder = 10
+          Text = '  /  /  '
+        end
+      end
+      object PnlTopo: TPanel
+        Left = 0
+        Top = 0
+        Width = 587
+        Height = 80
+        Align = alTop
+        BevelOuter = bvNone
+        Padding.Left = 10
+        Padding.Top = 10
+        Padding.Right = 10
+        Padding.Bottom = 10
+        TabOrder = 2
+        ExplicitTop = 8
+        ExplicitWidth = 576
+        object ImgCliente: TImage
+          Left = 10
+          Top = 10
+          Width = 60
+          Height = 60
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Bottom = 5
+          Align = alLeft
+          Picture.Data = {
+            0954506E67496D61676589504E470D0A1A0A0000000D494844520000003C0000
+            003C08060000003AFCD972000000097048597300000B1300000B1301009A9C18
+            000005D14944415478DAED5A69AC5D53145E456BA829A5AF6AEA338418224455
+            54621EFA8C31246A9E878AA2A169CCA54889A90435358F10040D1E6D51A58AD6
+            D00A6268521534688B46298AF6F9BEAC73927D4FCE397B3AF7BEE6B95FF2FD38
+            FBEEBDCFFACE397BEDB5D6BE3DE47F861E5D6D405370537053705370BD04B3EF
+            39E095E0A6E02FE067E014F021F0D73ADBBA6772FF7DC1CD92B62FC17BC0C7C0
+            95550BBE151C59F0DB92C498897510BA36783F787A499F76F0CC58C103C0E160
+            1BB825B8AE652E3EE193C0A72B14DB139C041EE4D0975FDCF3E0A5E06FBE8287
+            804F811B781AF83BB813F86D4582AF07AFF51CF32A78A88FE0ADC08F02C4A6E0
+            7A3EAF02B17D451FDC5A01630F06A7BA0A7E043C2BC2D03FC07EA26F3B0623C0
+            3B02C73E005EE022984FF367709D08433BC1BDC0F72205778047048EFD10DCC3
+            45F07EE01B11462E07878A3A8F58701D3E28EA307DC1A530C045F0D9E0C38106
+            D24B1F5720760BF014D107BA23B811B8029C09DE044E2F9873137032B8ABA72D
+            5C56BD5D048F01AF0E147C337855A68D8E8FEBF034708D92B1F4C6A30B7EEB0F
+            BE0F6EEE61CB3229D846B38219B19C1A20F66BD137F797D1B68DA8A76C759C63
+            29382779401D99DF0E075FF2B0E78BC41EABE067C0E303049F2FBADE526C2CEA
+            B4B60E988BC87BE36F8A86952E70F6D20C0D8FF1348E9F4F8BE8BA49313E7908
+            31608437C5B8A67F78D671EC58F00A17C12F8047791AD69119C335F71DB87AA4
+            E00FC041C6359DD062D1D8DA8605A28ED22A3864EF63E837C6B8E69B1D1F2936
+            C5B6E057C6F5BBA27BBC0D7C302D2E8219A8B7791AC57DD74C18B896CFAD4830
+            9391278DEB09E2961531B31BE522F815F0104FA38624E352BC081E5991E0CBC1
+            DB3342465AC6F0013195FCC745F03BE0604FA3B8654C32AE43FC401146252253
+            8C958237676077D1ED2D1759C1DC4F5B3D8D627436C1B8BE533427AD02278AA6
+            A9291E150D628A40A10345E379AB6026DB4C9CD7F434EA6EF012E39A9FF8E40A
+            C4D268C6D10B8CB6B7C1BD4BFA73394E2D9BD4147C2CF85C8061D9CC8421246B
+            5DDB450A9E01EE635C33546426D7ABA0FF0DE075B6494DC16780F78A7F6A98F7
+            26F8D687470A6671EE62E37A67F053472DCE9D5A45BD20C3CB16970912644341
+            BE893E91829764E6D83069AB54B0D9BE836800CEC8693DD1342E0F7450F3C097
+            8D3686992E115119168AA68729D697F2527094E03C747ACC310DDC3F52F013A2
+            39740ADB27CDF53EA32AC1659F539F9CDF0625A27B4B18BE178D07BE31DA2E14
+            F53145605F3ADE39257D9C04B30F0B7B45215DBB68D12FFB051C2DE1A59E6C30
+            43BC0E1E6019C7E88A457B3ABC792182FB27626DF135F7DD6152FB46B87DCC15
+            FF4086C1CFF6521B1AEE06CE76B037C5CAE481B1985053A32B9A8089FB65A26F
+            D5D5F92C4EC699E5D903450BE3AB7918CA9AF2B44C7B4C0593450D6E910BF304
+            B3D2476F7C8294D7A08A305A748B32C180E01AC7F179C143CCD248315F3442FB
+            D1147C9168A01EB39DB04CCB53BE8F8D36DE8325175BCAC8130BE6D2A62F60E1
+            8E4EA86FA46082D593B65430AB8D37563029C135482FFD93D1C6EAC7BF9671FC
+            A25618D78CED59BE7549F85D3198821907CF12F775E6020621D935D76919935D
+            5EAEC9BE0FC6F126ED527EF6EA03BE457A75AEE31F2205D353F3CB638A18E24F
+            F230933761CD28B49C6A8A9998183837E7775B5848B068BF34A79D752D3AB3A1
+            12FF178D459CE04F093B924CF19668156256499FDB44B7B93214D6A112B09271
+            8BE856178AE5F5FE530B434B56344738F4E557C26A09ABA0CBEA6550BD04B78A
+            1E8AB3FCE39366128B441D16B7A9F9ABBA60C6C00CF259E689F5FA8CBA5E03EF
+            138DB46C4EAFA18219EBDE25B525992AC15A16F3EED9AB82E093453FC15EB113
+            59F0B7E81279BC2B05F3348F9F5DCF3A8B4DC17D9E7F619A1E3A418C6006039F
+            8896821A89CFC15DA4360C6D88E0C3A4B68ED548648F771A22B88A33E0987B0F
+            6BB4609EDF0EEC22C1D9B3E38608668050459E1A7AEF7E8D16CC3FB0F89E4355
+            05161A82E2FFE61FC4BB3B9A82BB3B9A82BB3BFE0304DF12BCEA094DC4000000
+            0049454E44AE426082}
+          ExplicitLeft = 0
+          ExplicitTop = 0
+        end
+        object LblCadastro: TLabel
+          Left = 70
+          Top = 10
+          Width = 507
+          Height = 60
+          Margins.Top = 10
+          Align = alClient
+          Alignment = taCenter
+          AutoSize = False
+          BiDiMode = bdLeftToRight
+          Caption = 'Cadastro de Clientes'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = 30
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentBiDiMode = False
+          ParentFont = False
+          Layout = tlCenter
+          ExplicitLeft = 76
+          ExplicitTop = 14
+        end
+      end
+    end
+  end
+  object RESTClient1: TRESTClient
+    BaseURL = 'https://viacep.com.br'
+    Params = <>
+    Left = 440
+    Top = 48
+  end
+  object RESTRequest1: TRESTRequest
+    Client = RESTClient1
+    Params = <>
+    Response = RESTResponse1
+    Left = 376
+    Top = 48
+  end
+  object RESTResponse1: TRESTResponse
+    Left = 408
+    Top = 48
+  end
+end

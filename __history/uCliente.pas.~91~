@@ -1,0 +1,261 @@
+unit uCliente;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error,
+  FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, DM_BD;
+
+type
+  TCliente = class
+  private
+    FID: Integer;
+    FNome: String;
+    FEndereco: String;
+    FBairro: String;
+    FNumero: Integer;
+    FMunicipio: String;
+    FCep: Integer;
+    FEstado: String;
+    FCPFCNPJ: Integer;
+    FEmail: String;
+    FTelefone: String;
+    FDataNasc: TDateTime;
+    procedure SetID(const Value: Integer);
+    procedure SetNome(const Value: String);
+    procedure SetEndereco(const Value: String);
+    procedure SetBairro(const Value: String);
+    procedure SetNumerto(const Value: Integer);
+    procedure SetMunicipio(const Value: String);
+    procedure SetCep(const Value: Integer);
+    procedure SetEstado(const Value: String);
+    procedure SetCFPCNPJ(const Value: Integer);
+    procedure SetTelefone(const Value: String);
+    procedure SetDataNasc(const Value: TDateTime);
+
+  published
+    property ID : Integer read FID write SetID;
+    property Nome: String read FNome write SetNome;
+    property Endereco: String read FEndereco write SetEndereco;
+    property Bairro: String read FBairro write SetBairro;
+    property Numero: Integer read FNumero write SetNumerto;
+    property Municipio: String read FMunicipio write SetMunicipio;
+    property Cep: Integer read FCep write SetCep;
+    property Estado: String read FEstado write SetEstado;
+    property CPFCNPJ: Integer read FCPFCNPJ write SetCFPCNPJ;
+    property Telefone: String read FTelefone write SetTelefone;
+    property DataNasc: TDateTime read FDataNasc write SetDataNasc;
+
+  public
+    procedure AdicionarCliente(cliente: TCliente);
+    procedure AtualizarCliente(cliente: TCliente);
+    procedure RemoverCliente(id: integer);
+    function BuscarCliente(cpf: integer): TCliente;
+
+  end;
+
+implementation
+
+{ TCliente }
+
+procedure TCliente.AdicionarCliente(cliente: TCliente);
+var
+  QryAdicionar: TFDQuery;
+begin
+
+  QryAdicionar := TFDQuery.Create(nil);
+  QryAdicionar.Connection  := F_DMFD.F_Conexao;
+  QryAdicionar.Transaction := F_DMFD.F_Transacao;
+
+  Try
+    Try
+      if not F_DMFD.F_Transacao.Active then
+        F_DMFD.F_Transacao.StartTransaction;
+
+
+      QryAdicionar.Close;
+      QryAdicionar.SQL.Clear;
+      QryAdicionar.SQL.Add('INSERT INTO CLIENTE (nome, cpf, logradouro, bairro, ');
+      QryAdicionar.SQL.Add(' uf, data_nascimento, cep, telefone)');
+      QryAdicionar.SQL.Add('VALUES (:nome, :cpf, :logradouro, :bairro, ');
+      QryAdicionar.SQL.Add(' :uf, :data_nas, :cep, :telefone)');
+      QryAdicionar.ParamByName('nome').AsString       := cliente.FNome;
+      QryAdicionar.ParamByName('cpf').AsInteger       := cliente.FCPFCNPJ;
+      QryAdicionar.ParamByName('logradouro').AsString := cliente.FEndereco;
+      QryAdicionar.ParamByName('bairro').AsString     := cliente.FBairro;
+      QryAdicionar.ParamByName('uf').AsString         := cliente.FEstado;
+      QryAdicionar.ParamByName('data_nas').AsDate     := cliente.FDataNasc;
+      QryAdicionar.ParamByName('cep').AsInteger       := cliente.FCep;
+      QryAdicionar.ParamByName('telefone').AsString   := cliente.FTelefone;
+      QryAdicionar.ExecSQL;
+      F_DMFD.F_Transacao.Commit;
+    Except
+      F_DMFD.F_Transacao.Rollback;
+    End;
+  Finally
+
+    QryAdicionar.Free;
+
+  End;
+end;
+
+procedure TCliente.AtualizarCliente(cliente: TCliente);
+var
+  QryAtualizar: TFDQuery;
+begin
+
+  QryAtualizar := TFDQuery.Create(nil);
+  QryAtualizar.Connection  := F_DMFD.F_Conexao;
+  QryAtualizar.Transaction := F_DMFD.F_Transacao;
+
+  Try
+    Try
+      if not F_DMFD.F_Transacao.Active then
+        F_DMFD.F_Transacao.StartTransaction;
+
+
+      QryAtualizar.Close;
+      QryAtualizar.SQL.Clear;
+      QryAtualizar.SQL.Add('UPDATE CLIENTE ');
+      QryAtualizar.SQL.Add('SET nome = :nome, cpf = :cpf, logradouro = :logradouro,');
+      QryAtualizar.SQL.Add('bairro = :bairro, uf = :uf, data_nascimento = :data, ');
+      QryAtualizar.SQL.Add('cep = :cep, telefone = :telefone');
+      QryAtualizar.SQL.Add('WHERE id = :clienteid');
+      QryAtualizar.ParamByName('clienteid').AsInteger := cliente.FID;
+      QryAtualizar.ParamByName('nome').AsString       := cliente.FNome;
+      QryAtualizar.ParamByName('cpf').AsInteger       := cliente.FCPFCNPJ;
+      QryAtualizar.ParamByName('logradouro').AsString := cliente.FEndereco;
+      QryAtualizar.ParamByName('bairro').AsString     := cliente.FBairro;
+      QryAtualizar.ParamByName('uf').AsString         := cliente.FEstado;
+      QryAtualizar.ParamByName('data_nas').AsDate     := cliente.FDataNasc;
+      QryAtualizar.ParamByName('cep').AsInteger       := cliente.FCep;
+      QryAtualizar.ParamByName('telefone').AsString   := cliente.FTelefone;
+      QryAtualizar.ExecSQL;
+      F_DMFD.F_Transacao.Commit;
+    Except
+      F_DMFD.F_Transacao.Rollback;
+    End;
+  Finally
+
+    QryAtualizar.Free;
+
+  End;
+end;
+
+function TCliente.BuscarCliente(cpf: integer): TCliente;
+var
+  QryBuscar: TFDQuery;
+begin
+
+  QryBuscar := TFDQuery.Create(nil);
+  QryBuscar.Connection  := F_DMFD.F_Conexao;
+
+  Try
+
+    QryBuscar.Close;
+    QryBuscar.SQL.Clear;
+    QryBuscar.SQL.Add('Select id, nome, cpf, logradouro, bairro, uf,');
+    QryBuscar.SQL.Add('       data_nascimento, cep, telefone');
+    QryBuscar.SQL.Add('From CLIENTE ');
+    QryBuscar.SQL.Add('WHERE CPF = :CPF');
+    QryBuscar.ParamByName('CPF').AsInteger := cpf;
+    QryBuscar.ExecSQL;
+
+  Finally
+
+    QryBuscar.Free;
+
+  End;
+
+end;
+
+procedure TCliente.RemoverCliente(id: integer);
+var
+  QryRemover: TFDQuery;
+begin
+
+  QryRemover := TFDQuery.Create(nil);
+  QryRemover.Connection  := F_DMFD.F_Conexao;
+  QryRemover.Transaction := F_DMFD.F_Transacao;
+
+  Try
+    Try
+      if not F_DMFD.F_Transacao.Active then
+        F_DMFD.F_Transacao.StartTransaction;
+
+
+      QryRemover.Close;
+      QryRemover.SQL.Clear;
+      QryRemover.SQL.Add('DELETE FROM cliente ');
+      QryRemover.SQL.Add('WHERE id = :clienteid');
+      QryRemover.ParamByName('clienteid').AsInteger := id;
+      QryRemover.ExecSQL;
+      F_DMFD.F_Transacao.Commit;
+    Except
+      F_DMFD.F_Transacao.Rollback;
+    End;
+  Finally
+
+    QryRemover.Free;
+
+  End;
+
+end;
+
+procedure TCliente.SetBairro(const Value: String);
+begin
+  FBairro := Value;
+end;
+
+procedure TCliente.SetCep(const Value: Integer);
+begin
+  FCep := Value;
+end;
+
+procedure TCliente.SetCFPCNPJ(const Value: Integer);
+begin
+  FCPFCNPJ := Value;
+end;
+
+procedure TCliente.SetDataNasc(const Value: TDateTime);
+begin
+  FDataNasc := Value;
+end;
+
+procedure TCliente.SetEndereco(const Value: String);
+begin
+  FEndereco := Value;
+end;
+
+procedure TCliente.SetEstado(const Value: String);
+begin
+  FEstado := Value;
+end;
+
+procedure TCliente.SetID(const Value: Integer);
+begin
+  FID := Value;
+end;
+
+procedure TCliente.SetMunicipio(const Value: String);
+begin
+  FMunicipio := Value;
+end;
+
+procedure TCliente.SetNome(const Value: String);
+begin
+  FNome := Value;
+end;
+
+procedure TCliente.SetNumerto(const Value: Integer);
+begin
+  FNumero := Value;
+end;
+
+procedure TCliente.SetTelefone(const Value: String);
+begin
+  FTelefone := Value;
+end;
+
+end.

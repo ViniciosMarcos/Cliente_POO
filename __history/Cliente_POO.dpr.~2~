@@ -1,0 +1,15 @@
+program Cliente_POO;
+
+uses
+  Vcl.Forms,
+  frmCliente in 'frmCliente.pas' {F_Cliente},
+  uCliente in 'uCliente.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TF_Cliente, F_Cliente);
+  Application.Run;
+end.

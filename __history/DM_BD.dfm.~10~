@@ -1,0 +1,25 @@
+object F_DMFD: TF_DMFD
+  OldCreateOrder = False
+  Height = 247
+  Width = 327
+  object F_Conexao: TFDConnection
+    Params.Strings = (
+      'Database=gestor_teste'
+      'User_Name=postgre'
+      'Password=admin'
+      'DriverID=PG')
+    Transaction = F_Transacao
+    Left = 40
+    Top = 48
+  end
+  object F_Transacao: TFDTransaction
+    Options.AutoStop = False
+    Connection = F_Conexao
+    Left = 40
+    Top = 96
+  end
+  object FDPhysPgDriverLink1: TFDPhysPgDriverLink
+    Left = 40
+    Top = 144
+  end
+end
